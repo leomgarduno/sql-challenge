@@ -1,7 +1,5 @@
 -- identify variables for each table 
 -- declare variables and keys
--- 
-
 
 -- Drop tables
 
@@ -13,20 +11,42 @@ DROP TABLE IF EXISTS salaries;
 DROP TABLE IF EXISTS titles;
 
 -- Create tables
+-- Primary key is an identifier of our rows, it can not be repted each one has to be different
+
+
+CREATE TABLE employees (
+	emp_no INT PRIMARY KEY,
+	emp_title_id VARCHAR(100),
+	birth_date date,
+	first_name VARCHAR(100),
+	last_name VARCHAR(100),
+	sex VARCHAR(100),
+	hire_date date,
+	PRIMARY KEY (dept_no)
+);
 
 CREATE TABLE departments (
-  dept_no VARCHAR(30) PRIMARY KEY,
-  dept_name VARCHAR(30)
+  	dept_no VARCHAR(100) NOT NULL, 
+  	dept_name VARCHAR(100) NOT NULL, 
+  	PRIMARY KEY (dept_no)
 );
 
 
 CREATE TABLE salaries (
-  emp_no INT PRIMARY KEY,
-  salary INT
+	emp_no INT PRIMARY KEY,
+    salary INT,
+	FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
+);
+
+CREATE TABLE salaries (
+	emp_no INT PRIMARY KEY,
+ 	salary INT,
+ 	PRIMARY KEY (emp_no),
+	FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
 );
 
 CREATE TABLE dept_emp (
-  dept_no VARCHAR(30),
+  dept_no VARCHAR(100),
   emp_no INT,
   PRIMARY KEY (dept_no, emp_no),
   FOREIGN KEY (emp_no) REFERENCES employees(emp_no),
@@ -35,9 +55,16 @@ CREATE TABLE dept_emp (
 
 
 CREATE TABLE dept_manager (
-  dept_no VARCHAR(30),
-  emp_no INT,
-  PRIMARY KEY (dept_no, emp_no),
-  FOREIGN KEY (dept_no) REFERENCES departments(dept_no),
-  FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
+  	dept_no VARCHAR(100),
+	emp_no INT PRIMARY KEY,
+  	PRIMARY KEY (dept_no, emp_no),
+  	FOREIGN KEY (dept_no) REFERENCES departments(dept_no),
+  	FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
 );
+
+CREATE TABLE titles (
+    title_id INT   NOT NULL,
+    title VARCHAR(100)   NOT NULL,
+	PRIMARY KEY (title_id)
+);
+
