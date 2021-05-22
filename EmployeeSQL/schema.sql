@@ -13,16 +13,19 @@ DROP TABLE IF EXISTS titles;
 -- Create tables
 -- Primary key is an identifier of our rows, it can not be repted each one has to be different
 
-
 CREATE TABLE employees (
 	emp_no INT PRIMARY KEY,
 	emp_title_id VARCHAR(100),
-	birth_date date,
+	birth_date DATE,
 	first_name VARCHAR(100),
 	last_name VARCHAR(100),
 	sex VARCHAR(100),
-	hire_date date,
-	PRIMARY KEY (dept_no)
+	hire_date DATE	
+);
+
+CREATE TABLE salaries (
+	emp_no INT PRIMARY KEY,
+ 	salary INT
 );
 
 CREATE TABLE departments (
@@ -38,12 +41,6 @@ CREATE TABLE salaries (
 	FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
 );
 
-CREATE TABLE salaries (
-	emp_no INT PRIMARY KEY,
- 	salary INT,
- 	PRIMARY KEY (emp_no),
-	FOREIGN KEY (emp_no) REFERENCES employees(emp_no)
-);
 
 CREATE TABLE dept_emp (
   dept_no VARCHAR(100),
