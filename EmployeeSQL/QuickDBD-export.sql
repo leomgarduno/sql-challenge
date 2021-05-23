@@ -12,7 +12,7 @@ CREATE TABLE "employees" (
     "sex" VARCHAR(100)   NOT NULL,
     "hire_date" DATE   NOT NULL,
     CONSTRAINT "pk_employees" PRIMARY KEY (
-        "emp_no"
+        "emp_no","emp_title_id"
      )
 );
 
@@ -25,7 +25,7 @@ CREATE TABLE "salaries" (
 );
 
 CREATE TABLE "dept_emp" (
-    "dept_no" VARCHAR(100)   NOT NULL,
+    "dept_no" INT   NOT NULL,
     "emp_no" INT   NOT NULL,
     CONSTRAINT "pk_dept_emp" PRIMARY KEY (
         "dept_no","emp_no"
@@ -33,7 +33,7 @@ CREATE TABLE "dept_emp" (
 );
 
 CREATE TABLE "dept_manager" (
-    "dept_no" VARCHAR(100)   NOT NULL,
+    "dept_no" INT   NOT NULL,
     "emp_no" INT   NOT NULL,
     CONSTRAINT "pk_dept_manager" PRIMARY KEY (
         "dept_no","emp_no"
@@ -49,7 +49,7 @@ CREATE TABLE "titles" (
 );
 
 CREATE TABLE "departments" (
-    "dept_no" VARCHAR(100)   NOT NULL,
+    "dept_no" INT   NOT NULL,
     "dept_name" VARCHAR(100)   NOT NULL,
     CONSTRAINT "pk_departments" PRIMARY KEY (
         "dept_no"
